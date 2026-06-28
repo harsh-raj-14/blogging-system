@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+
+    <!-- Sidebar -->
+    {% include 'dashboard/sidebar.html' %}
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+
+        <!-- Profile Card -->
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">My Profile</h4>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <!-- Profile Image -->
+                    <div class="col-md-3 text-center">
+
+                        {% if user.profile.profile_image %}
+                            <img src="{{ user.profile.profile_image.url }}"
+                                 class="rounded-circle img-thumbnail"
+                                 style="width:170px;height:170px;object-fit:cover;">
+                        {% else %}
+                            <img src="https://via.placeholder.com/170"
+                                 class="rounded-circle img-thumbnail">
+                        {% endif %}
+                    </div>
+                    <!-- User Details -->
+                    <div class="col-md-9">
+
+                        <table class="table table-striped table-bordered">
+
+                            <tr>
+                                <th width="30%">Username</th>
+                                <td>{{ user.username }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Full Name</th>
+                                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Bio</th>
+                                <td>{{ user.profile.bio }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Phone</th>
+                                <td>{{ user.profile.phone }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Address</th>
+                                <td>{{ user.profile.address }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Date Joined</th>
+                                <td>{{ user.date_joined|date:"d M Y" }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Last Login</th>
+                                <td>{{ user.last_login|date:"d M Y H:i" }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Staff</th>
+                                <td>
+                                    {% if user.is_staff %}
+                                        <span class="badge bg-success">Yes</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">No</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Super User</th>
+                                <td>
+                                    {% if user.is_superuser %}
+                                        <span class="badge bg-success">Yes</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">No</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Statistics -->
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="card text-center shadow">
+                    <div class="card-header bg-info text-white">
+                        Categories
+                    </div>
+
+                    <div class="card-body">
+                        <h2>{{ category_count }}</h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card text-center shadow">
+                    <div class="card-header bg-success text-white">
+                        Blogs
+                    </div>
+
+                    <div class="card-body">
+                        <h2>{{ blogs_count }}</h2>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

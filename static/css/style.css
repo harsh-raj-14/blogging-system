@@ -1,0 +1,321 @@
+/* Google Font */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#222;
+}
+
+/* Navbar */
+
+.navbar{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    padding:15px 0;
+}
+
+.navbar-brand{
+    font-size:28px;
+    font-weight:700;
+}
+
+.nav-link{
+    color:#060202!important;
+    margin-right:15px;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#ffd43b!important;
+}
+
+/* Share Dropdown */
+.dropdown{
+    position: relative;
+}
+
+.dropdown-menu{
+    position: absolute !important;
+    z-index: 99999 !important;
+    min-width: 220px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+/* Don't clip the dropdown */
+.card,
+.card-body,
+section,
+article,
+.container,
+.row,
+.col-lg-8{
+    overflow: visible !important;
+}
+
+/* Comments stay below */
+.comment-section{
+    position: relative;
+    z-index: 1;
+}
+
+.dropdown-item:hover{
+    background:#eef2ff;
+}
+
+/* Search */
+
+.form-control{
+    border-radius:30px;
+}
+
+.btn-warning{
+    border-radius:30px;
+}
+
+/* Category */
+
+.category-bar{
+    background:#fff;
+    box-shadow:0 5px 15px rgba(0,0,0,.06);
+    padding:12px;
+}
+
+.category-bar a{
+    color:#555;
+    margin-right:25px;
+    text-decoration:none;
+    font-weight:500;
+    transition:.3s;
+}
+
+.category-bar a:hover{
+    color:#4f46e5;
+}
+
+/* Hero */
+
+.hero{
+    height:70vh;
+    background:linear-gradient(135deg,#4f46e5,#8b5cf6);
+    border-radius:25px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.hero h1{
+    font-size:58px;
+    font-weight:700;
+}
+
+.hero p{
+    font-size:20px;
+    opacity:.9;
+}
+
+.hero .btn{
+    margin-top:20px;
+    padding:15px 35px;
+    border-radius:30px;
+}
+
+/* Cards */
+.comment-section{
+    position:relative;
+    z-index:1;
+}
+
+.card{
+    border:none;
+    border-radius:20px;
+    overflow:visible;
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.card img{
+    height:230px;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.card:hover img{
+    transform:scale(1.08);
+}
+
+.card-title{
+    font-weight:700;
+}
+
+.badge{
+    border-radius:20px;
+    padding:8px 15px;
+}
+
+/* Buttons */
+
+.btn-primary{
+    background:#4f46e5;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#4338ca;
+}
+
+/* Dashboard Cards */
+
+.stats-card{
+    background:#fff;
+    border-radius:20px;
+    text-align:center;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.stats-card:hover{
+    transform:translateY(-8px);
+}
+
+.stats-card i{
+    font-size:55px;
+    color:#4f46e5;
+    margin-bottom:15px;
+}
+
+.stats-card h2{
+    font-weight:700;
+}
+
+/* Profile */
+
+.profile-card{
+    border-radius:20px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.profile-card img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+/* Footer */
+
+footer{
+    background:#111827;
+    color:#fff;
+    padding:60px 0;
+    margin-top:80px;
+}
+
+footer h4,
+footer h5{
+    margin-bottom:20px;
+}
+
+footer ul{
+    list-style:none;
+    padding:0;
+}
+
+footer li{
+    margin-bottom:10px;
+}
+
+footer a{
+    color:#bbb;
+    text-decoration:none;
+}
+
+footer a:hover{
+    color:#fff;
+}
+
+footer i{
+    margin-right:15px;
+    cursor:pointer;
+}
+
+footer i:hover{
+    color:#ffd43b;
+}
+
+/* Animation */
+
+.card,
+.stats-card,
+.btn{
+    transition:.4s ease;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.hero{
+height:60vh;
+padding:20px;
+}
+
+.hero h1{
+font-size:35px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.navbar-brand{
+font-size:22px;
+}
+
+.category-bar{
+overflow-x:auto;
+white-space:nowrap;
+}
+
+}
+
+.sidebar {
+    background: #1e293b;
+    min-height: 100vh;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+.sidebar .active {
+    background: #f59e0b;
+    color: white;
+}
