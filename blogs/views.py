@@ -112,3 +112,18 @@ def like_blog(request, blog_id):
         Like.objects.create(user=request.user, blog=blog)
 
     return redirect(request.META.get('HTTP_REFERER'))
+
+def sorry(request):
+    return render(request, "sorry.html")
+
+def error_404(request, exception):
+    return render(request, "sorry.html", status=404)
+
+def error_500(request):
+    return render(request, "sorry.html", status=500)
+
+def error_403(request, exception):
+    return render(request, "sorry.html", status=403)
+
+def error_400(request, exception):
+    return render(request, "sorry.html", status=400)

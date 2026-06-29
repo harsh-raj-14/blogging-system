@@ -6,4 +6,5 @@ urlpatterns = [
     path('edit-profile/', views.edit_profile, name='edit_profile'),
     # Like Blog
     path('like/<int:blog_id>/', views.like_blog, name='like_blog'),
+    path("sorry/", views.sorry, name="sorry"),
 ]

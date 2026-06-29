@@ -34,3 +34,6 @@ urlpatterns = [
     # Dashboards
     path('dashboard/', include('dashboards.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "blogs.views.error_404"
+handler500 = "blogs.views.error_500"

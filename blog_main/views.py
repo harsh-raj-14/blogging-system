@@ -5,7 +5,7 @@ from blogs.models import Blog, Category
 from assignments.models import About
 from .forms import RegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib import auth
+from django.contrib import auth,messages
 
 def home(request):
     featured_posts = Blog.objects.filter(is_featured=True, status='Published').order_by('updated_at')
@@ -41,21 +41,19 @@ def register(request):
 
 
 def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
 
-            user = auth.authenticate(username=username, password=password)
-            if user is not None:
-                auth.login(request, user)
-            return redirect('dashboard')
-    form = AuthenticationForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'login.html', context)
+        if form.is_valid():
+            auth.login(request, form.get_user())
+            return redirect("dashboard")
+
+        messages.error(request, "Invalid username or password.")
+
+    else:
+        form = AuthenticationForm()
+
+    return render(request, "login.html", {"form": form})
 
 
 def logout(request):
