@@ -66,59 +66,82 @@ def delete_category(request, pk):
 
 @login_required
 def posts(request):
+    print("Current User:", request.user)
 
     blogs = Blog.objects.filter(author=request.user).order_by('-created_at')
 
-    context = {
-        'blogs': blogs,
-    }
+    print("Blogs found:", blogs.count())
 
-    return render(request, 'dashboard/posts.html', context)
+    for blog in blogs:
+        print(blog.title, blog.author)
 
+    return render(request, "dashboard/posts.html", {
+        "blogs": blogs,
+    })
 
+@login_required(login_url='login')
 def add_post(request):
-    if request.method == 'POST':
+    print("View Called")
+
+    if request.method == "POST":
+        print("POST Request Received")
+        print(request.POST)
+        print(request.FILES)
+
         form = BlogPostForm(request.POST, request.FILES)
+
+        print("Form Valid:", form.is_valid())
+
         if form.is_valid():
-            post = form.save(commit=False) # temporarily saving the form
+            print("Saving Blog...")
+
+            post = form.save(commit=False)
             post.author = request.user
+
             post.save()
-            title = form.cleaned_data['title']
-            post.slug = slugify(title) + '-'+str(post.id)
+
+            print("Saved Successfully:", post.id)
+
+            post.slug = slugify(post.title) + "-" + str(post.id)
             post.save()
-            return redirect('posts')
+
+            return redirect("posts")
+
         else:
-            print('form is invalid')
             print(form.errors)
+
     form = BlogPostForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'dashboard/add_post.html', context)
+
+    return render(request, "dashboard/add_post.html", {"form": form})
 
 
+@login_required(login_url='login')
 def edit_post(request, pk):
-    post = get_object_or_404(Blog, pk=pk)
+    post = get_object_or_404(Blog, pk=pk, author=request.user)
+
     if request.method == 'POST':
         form = BlogPostForm(request.POST, request.FILES, instance=post)
-        if form.is_valid():
-            post = form.save()
-            title = form.cleaned_data['title']
-            post.slug = slugify(title) + '-'+str(post.id)
-            post.save()
-            return redirect('posts')
-    form = BlogPostForm(instance=post)
-    context = {
-        'form': form,
-        'post': post
-    }
-    return render(request, 'dashboard/edit_post.html', context)
 
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.slug = slugify(post.title) + '-' + str(post.id)
+            post.save()
+
+            return redirect('posts')
+
+    else:
+        form = BlogPostForm(instance=post)
+
+    return render(request, 'dashboard/edit_post.html', {
+        'form': form,
+        'post': post,
+    })
 
 def delete_post(request, pk):
     post = get_object_or_404(Blog, pk=pk)
     post.delete()
     return redirect('posts')
+
 
 
 def users(request):
