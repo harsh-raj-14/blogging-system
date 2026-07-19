@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     # Third Party Apps
     'crispy_forms',
     'crispy_bootstrap4',
-    'rest_framework',
     
     # Local Apps
     'blogs.apps.BlogsConfig',
@@ -164,8 +163,4 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-REST_FRAMEWORK={
-    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE':2,
-}
 
