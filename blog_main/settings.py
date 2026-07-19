@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     # Third Party Apps
     'crispy_forms',
     'crispy_bootstrap4',
-
+    'rest_framework',
+    
     # Local Apps
     'blogs.apps.BlogsConfig',
     'assignments',
